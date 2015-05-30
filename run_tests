@@ -1,0 +1,9 @@
+
+echo " "
+echo "Running tests for network connectivity"
+echo "______________________________________________________________________"
+echo " "
+
+python Modules/test.py
+
+
