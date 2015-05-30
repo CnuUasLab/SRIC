@@ -4,7 +4,7 @@
 
 Running tests
 -------------
-to un the tests run: `./run_tests' in the root directory of the Repository.
+to un the tests run: `./run_tests` in the root directory of the Repository.
 
 Part 1
 ======
