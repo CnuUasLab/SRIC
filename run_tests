@@ -4,6 +4,6 @@ echo "Running tests for network connectivity"
 echo "______________________________________________________________________"
 echo " "
 
-python Modules/test.py
+python Modules/Test_Connection_Check.py
 
 
