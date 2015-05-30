@@ -1,6 +1,6 @@
 
 import unittest
-from script import check_connectivity
+from script_check_connectivity import check_connectivity
 
 class TestStringMethods(unittest.TestCase):
 
