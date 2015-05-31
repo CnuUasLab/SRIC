@@ -5,7 +5,7 @@ from script_check_connectivity import check_connectivity
 class TestStringMethods(unittest.TestCase):
 
   def test_google_dn(self):
-      self.assertEqual(check_connectivity('http://www.google.com'), True)
+      self.assertEqual(check_connectivity('http://127.0.0.1'), True)
 
   def test_personal_dn(self):
 	self.assertEqual(check_connectivity('http://www.dkroell.com'), True)
