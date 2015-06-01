@@ -1,5 +1,8 @@
 
 echo " "
+echo " Make sure you're running the helloworld.js server in the server_tests directory "
+echo " "
+
 echo "Running tests for network connectivity"
 echo "______________________________________________________________________"
 echo " "
