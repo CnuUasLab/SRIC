@@ -17,5 +17,8 @@ for x in range(0, 100):
 	subprocess.call(['ping', '-n', '1', server])
 	pingcount = time.time() - tmp
 
-print urlib2count / 100
-print pingcount / 100
+print '---------------------'
+print 'resutlts:'
+
+print 'urllib2:',urlib2count / 100
+print 'ping:', pingcount / 100
