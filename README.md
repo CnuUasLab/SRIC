@@ -10,7 +10,7 @@ Part 1
 ======
 The first part of the objective is to test the connectivity of a network. This is the first part that's dealt with in the test cases.
 
-When checking the connectivity of any IP Address or URL you must put `<b>http://</b>` at the beginning. This is important for the functionality of the method in the script.
+When checking the connectivity of any IP Address or URL you must put <b>`http://`</b> at the beginning. This is important for the functionality of the method in the script.
 
 For instance, say you wanted to check the connectivity of IP 0.0.0.0, you would have to enter in the parameter in the method as `http://0.0.0.0`.
 
