@@ -2,7 +2,6 @@ import subprocess
 
 # The IP of the server we're downloading/uploading things to/from
 server = 192.168.1.1
-server = 'http://' + server
 
 # The names of the files were dealing with
 creds = 'credentials.txt'
@@ -21,7 +20,7 @@ while True:
 		continue
 	
 	# Using SFPT because I'm not sure if we can use SCP
-	with pysftp.Connection(server, username = down_user, password = down_pass) as sftp:
+	with pysftp.Connection('http://' + server, username = down_user, password = down_pass) as sftp:
 		# Get the download payload
 		sftp.get(creds, '/creds.txt')
 		
