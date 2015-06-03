@@ -18,7 +18,7 @@ for x in range(0, 100):
 	pingcount = time.time() - tmp
 
 print '---------------------'
-print 'resutlts:'
+print 'results:'
 
 print 'urllib2:',urlib2count / 100
 print 'ping:', pingcount / 100
