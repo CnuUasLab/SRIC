@@ -29,7 +29,7 @@ while True:
 	
 	# Parse it mytext reads all lines of the file contents
 	# up_usr and up_pass defined in file contents
-	my_text = inputfile.readlines()
+	my_text = cred_file.readlines()
 	
 	
 	with pysftp.Connection(server, username = up_user, password = up_pass) as sftp:
