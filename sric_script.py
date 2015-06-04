@@ -27,8 +27,10 @@ while True:
 	# Open download file
 	cred_file = open(creds)
 	
-	# Parse it
-	# define up_user and up_pass from parse
+	# Parse it mytext reads all lines of the file contents
+	# up_usr and up_pass defined in file contents
+	my_text = inputfile.readlines()
+	
 	
 	with pysftp.Connection(server, username = up_user, password = up_pass) as sftp:
 		# Put the upload payload
