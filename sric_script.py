@@ -28,7 +28,7 @@ while True:
 	cred_file = open(creds)
 	
 	# Parse it
-	
+	# define up_user and up_pass from parse
 	
 	with pysftp.Connection(server, username = up_user, password = up_pass) as sftp:
 		# Put the upload payload
