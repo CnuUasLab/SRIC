@@ -1,6 +1,4 @@
 
-
-
 #methods for obtaining credentials from a sample file.
 #The paramemter passed is the file itself once opened.
 #these methods are based on the sample of how the credentials will be sent remotely.
