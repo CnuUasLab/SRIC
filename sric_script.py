@@ -1,4 +1,7 @@
 import subprocess
+from Modules.file_parse.__file_parse__ import obt_login
+from Modules.file_parse.__file_parse__ import obt_pass
+from Modules.file_parse.__file_parse__ import obt_message 
 
 # The IP of the server we're downloading/uploading things to/from
 server = 192.168.1.1
@@ -10,6 +13,11 @@ upload = 'upload-package.txt'
 # Download creds
 down_user = 'tmp'
 down_pass = 'tmp'
+
+# Upload Creds
+up_user = 'tmp'
+up_pass = 'tmp'
+up_mess = 'tmp'
 
 # Loop forever!
 while True:
@@ -30,7 +38,10 @@ while True:
 	# Parse it mytext reads all lines of the file contents
 	# up_usr and up_pass defined in file contents
 	text = cred_file.readlines()
-	
+		
+	up_user = obt_login(text)
+	up_pass = obt_pass(text)
+	up_mess = obt_message(text)
 	
 	with pysftp.Connection(server, username = up_user, password = up_pass) as sftp:
 		# Put the upload payload
