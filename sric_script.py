@@ -57,11 +57,10 @@ while True:
 	ftp.login(up_user, up_pass)
 	ftp.storelines('STOR', upload_name, upload)
 	
-	
-	# Close files (After the put since we need to get that done as fast as possible)
+	# End this script to save resources for other things
+	ftp.quit()
 	cred_file.close()
 	uplaod.close()
-	# End this script to save resources for other things
 	break
 	
 # Not currently connected... Time to try again
