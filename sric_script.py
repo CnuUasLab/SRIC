@@ -19,15 +19,6 @@ upload = open('upload_package.txt', 'r')
 # Where we want to put the file
 upload_name = 'tmp-dicks'
 
-# Download creds
-down_user = 'tmp'
-down_pass = 'tmp'
-
-# Upload Creds
-up_user = 'tmp'
-up_pass = 'tmp'
-up_mess = 'tmp'
-
 # Set up the FTP object
 FTP.set_debuglevel(2)
 
