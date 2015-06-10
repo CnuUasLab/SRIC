@@ -35,7 +35,7 @@ while True:
 		print "FTP ERROR:", e
 		continue
 	
-	# connect to the FTP object and Login anonymously
+	# Connect to the FTP object and Login anonymously
 	ftp = FTP(ftp_addr)
 	ftp.login()
 	
@@ -48,7 +48,6 @@ while True:
 	ftp.retrlines("RETR " + download, lambda s, w = creds_file.write: w(s + "\n"))
 	
 	# Parse it mytext reads all lines of the file contents
-	# up_usr and up_pass defined in file contents
 	text = creds_file.readlines()
 		
 	up_user = obt_login(text)
@@ -62,7 +61,7 @@ while True:
 	# End this script to save resources for other things
 	ftp.quit()
 	cred_file.close()
-	uplaod.close()
+	upload.close()
 	break
 	
 # Not currently connected... Time to try again
