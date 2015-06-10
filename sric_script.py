@@ -1,5 +1,5 @@
 import subprocess
-#from ftplib import FTP  # I'd rather use ftputil, since it's a nice wrapper for ftplib, but it might make things slower?
+from ftplib import FTP  # I'd rather use ftputil, since it's a nice wrapper for ftplib, but it might make things slower?
 #from Modules.file_parse.__file_parse__ import obt_login
 #from Modules.file_parse.__file_parse__ import obt_pass
 #from Modules.file_parse.__file_parse__ import obt_message 
