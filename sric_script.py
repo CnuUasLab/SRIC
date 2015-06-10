@@ -8,9 +8,7 @@ from Modules.file_parse.__file_parse__ import obt_message
 # ?
 
 # The IP of the server we're downloading/uploading things to/from
-server = 192.168.1.1
-ftp_addr = server
-# ftp_addr = 'ftp://' + server
+ftp_addr = 192.168.1.1
 
 # The names of the files were dealing with
 creds_file = open('credentials.txt', 'wb')
