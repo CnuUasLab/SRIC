@@ -44,7 +44,7 @@ while True:
 		ftp.cwd(team_dir)
 	
 	# Need to do more testing with this line, we might be able to just use storelines or retrlines...
-#	ftp.retrbinary('RETR', creds_file.write)
+	ftp.retrbinary('RETR', creds_file.write)
 	ftp.retrlines("RETR " + download, lambda s, w = creds_file.write: w(s + "\n"))
 	
 	# Parse it mytext reads all lines of the file contents
