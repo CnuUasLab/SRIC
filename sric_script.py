@@ -1,5 +1,5 @@
 import subprocess
-from ftplib import FTP, all_errors  # I'd rather use ftputil, since it's a nice wrapper for ftplib, but it might make things slower?
+import ftplib  # I'd rather use ftputil, since it's a nice wrapper for ftplib, but it might make things slower?
 import Modules.file_parse.fileparse
 
 
@@ -26,7 +26,7 @@ while True:
 
 	# We don't need to verify that we have a valid connection, because ftplib will do that for us.
 	try:
-		ftp = FTP(ftp_addr, timeout = 1)
+		ftp = ftplib.FTP(ftp_addr, timeout = 1)
 		# Set up the FTP object
 		ftp.set_debuglevel(2)
 
