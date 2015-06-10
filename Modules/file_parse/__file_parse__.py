@@ -7,7 +7,7 @@ def obt_login(text):
 	first_line = text[0]
 	line_list = first_line.split(',')
 #indentation can cause an error
-	return line_list[0].replace("	", "")
+	return line_list[0].replace(" ", "")
 
 def obt_pass(text):
         first_line = text[0]
@@ -15,7 +15,7 @@ def obt_pass(text):
         return line_list[1].replace(" ", "")
 	
 def obt_message(text):
-        mess_line = text[2]
+        mess_line = text[1]
 	return mess_line
 
 
