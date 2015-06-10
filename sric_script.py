@@ -8,11 +8,13 @@ from Modules.file_parse.__file_parse__ import obt_message
 ftp_addr = 192.168.1.1
 
 # The names of the files were dealing with
-creds_file = open('credentials.txt', 'wb')
+download = 'team1.txt'
 upload = open('upload_package.txt', 'r')
+creds_file = open('credentials.txt', 'wb')
 
 # Where we want to put the file
-upload_name = 'tmp-dicks'
+upload_name = 'CNU/IMPRINT_upload_package.txt'
+team_dir = 'auvsi/team1/'
 
 # Set up the FTP object
 FTP.set_debuglevel(2)
@@ -26,6 +28,7 @@ while True:
 #	if output = 'tmp string for network down':
 #		continue
 
+	# We don't need to verify that we have a valid connection, because ftplib will do that for us.
 	try:
 		ftp = FTP(ftp_addr, timeout = 1)
 	except ftplib.all_errors, e:
@@ -37,10 +40,12 @@ while True:
 	ftp.login()
 	
 	# Change directory if needed
-	#ftp.cwd()
+	if team_dir:
+		ftp.cwd(team_dir)
 	
 	# Need to do more testing with this line, we might be able to just use storelines or retrlines...
-	ftp.retrbinart('RETR ', creds_file.write)
+	ftp.retrbinary('RETR', creds_file.write)
+	ftp.retrlines("RETR " + download, lambda s, w = creds_file.write: w(s + "\n"))
 	
 	# Parse it mytext reads all lines of the file contents
 	# up_usr and up_pass defined in file contents
