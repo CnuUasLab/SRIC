@@ -26,6 +26,7 @@ while True:
 #	if output = 'tmp string for network down':
 #		continue
 
+	# We don't need to verify that we have a valid connection, because ftplib will do that for us.
 	try:
 		ftp = FTP(ftp_addr, timeout = 1)
 	except ftplib.all_errors, e:
