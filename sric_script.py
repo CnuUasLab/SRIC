@@ -3,9 +3,6 @@ from ftplib import FTP  # I'd rather use ftputil, since it's a nice wrapper for 
 from Modules.file_parse.__file_parse__ import obt_login
 from Modules.file_parse.__file_parse__ import obt_pass
 from Modules.file_parse.__file_parse__ import obt_message 
-# Could we replace this with:
-# import Modules.file_parse
-# ?
 
 # The IP of the server we're downloading/uploading things to/from
 ftp_addr = 192.168.1.1
