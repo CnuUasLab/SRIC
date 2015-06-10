@@ -1,5 +1,5 @@
 import subprocess
-from ftplib import FTP  # I'd rather use ftputil, since it's a nice wrapper for ftplib, but it might make things slower?
+from ftplib import FTP, all_errors  # I'd rather use ftputil, since it's a nice wrapper for ftplib, but it might make things slower?
 import Modules.file_parse.fileparse
 
 
