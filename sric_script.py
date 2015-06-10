@@ -28,7 +28,8 @@ while True:
 
 	try:
 		ftp = FTP(ftp_addr, timeout = 1)
-	except: # What exception ftp.connect will raise for a timeout error?
+	except ftplib.all_errors, e:
+		print "FTP ERROR:", e
 		continue
 	
 	# connect to the FTP object and Login anonymously
