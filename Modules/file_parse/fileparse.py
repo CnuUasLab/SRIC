@@ -21,19 +21,5 @@ def obt_message(text):
 	return mess_line
 
 
-#file concatination:
-file = open('testfiles/'+sys.argv[1])
-text = file.readlines()
-
-#Printing the test file credentials
-
-usr_login = obt_login(text)
-print(usr_login)
-
-usr_pass = obt_pass(text)
-print(usr_pass)
-
-usr_mess = obt_message(text)
-print(usr_mess)
 
 
