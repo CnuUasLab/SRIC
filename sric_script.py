@@ -15,9 +15,6 @@ creds_file = open('credentials.txt', 'wb')
 upload_name = 'CNU/IMPRINT_upload_package.txt'
 team_dir = 'auvsi/team1/'
 
-# Set up the FTP object
-FTP.set_debuglevel(2)
-
 # Loop forever!
 while True:
 
@@ -30,6 +27,9 @@ while True:
 	# We don't need to verify that we have a valid connection, because ftplib will do that for us.
 	try:
 		ftp = FTP(ftp_addr, timeout = 1)
+		# Set up the FTP object
+		ftp.set_debuglevel(2)
+
 	except ftplib.all_errors, e:
 		print "FTP ERROR:", e
 		continue
