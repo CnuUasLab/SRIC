@@ -26,7 +26,7 @@ while True:
 
 #	# Verify connection
 #	# Does ftplib automatically check connections?  If so we should remove this whole block and set ftplib's timeout to like, 1s
-#	output = subprocess.check_output(['ping', '-n', '1', server]) # Need to fix this command to work on linux....
+#	output == subprocess.check_output(['ping', '-n', '1', server]) # Need to fix this command to work on linux....
 #	if output = 'tmp string for network down':
 #		continue
 
