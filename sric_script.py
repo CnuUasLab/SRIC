@@ -17,17 +17,18 @@ upload_name = 'tmp-dicks'
 # Set up the FTP object
 FTP.set_debuglevel(2)
 
-# Can we use this to remove the network connection test?
-#ftp = FTP()
-#ftp.connect(ftp_addr, timeout=1)
-
 # Loop forever!
 while True:
 
-	# Verify connection
-	# Does ftplib automatically check connections?  If so we should remove this whole block and set ftplib's timeout to like, 1s
-	output = subprocess.check_output(['ping', '-n', '1', server]) # Need to fix this command to work on linux....
-	if output = 'tmp string for network down':
+#	# Verify connection
+#	# Does ftplib automatically check connections?  If so we should remove this whole block and set ftplib's timeout to like, 1s
+#	output = subprocess.check_output(['ping', '-n', '1', server]) # Need to fix this command to work on linux....
+#	if output = 'tmp string for network down':
+#		continue
+
+	try:
+		ftp = FTP(ftp_addr, timeout = 1)
+	except: # What exception ftp.connect will raise for a timeout error?
 		continue
 	
 	# connect to the FTP object and Login anonymously
