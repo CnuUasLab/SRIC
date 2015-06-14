@@ -1,10 +1,11 @@
 import subprocess
 import ftplib  # I'd rather use ftputil, since it's a nice wrapper for ftplib, but it might make things slower?
+from ftplib import FTP
 import Modules.file_parse.fileparse
 
 
 # The IP of the server we're downloading/uploading things to/from
-ftp_addr = '192.168.1.1'
+ftp_addr = '192.168.1.200'
 
 # The names of the files were dealing with
 download = 'team1.txt'
@@ -13,15 +14,15 @@ creds_file = open('credentials.txt', 'wb')
 
 # Where we want to put the file
 upload_name = 'CNU/IMPRINT_upload_package.txt'
-team_dir = 'auvsi/team1/'
+#team_dir = 'auvsi/team1/'
 
 # Loop forever!
 while True:
 
 	# Verify connection before attempting to create FTP instance so we don't have to wait for 30 second timeout
 	# Does ftplib automatically check connections?  If so we should remove this whole block and set ftplib's timeout to like, 1s
-	output == subprocess.check_output(['ping', '-n', '1', server]) # Need to fix this command to work on linux....
-	if output = 'tmp string for network down':
+	output = subprocess.check_output(['ping', '-c', '1', ftp_addr])
+	if output == 'tmp string for network down':
 		continue
 
 	try:
@@ -38,12 +39,12 @@ while True:
 	ftp.login()
 	
 	# Change directory if needed
-	if team_dir:
+	if 'team_dir' in locals():
 		ftp.cwd(team_dir)
 	
 	# Need to do more testing with this line, we might be able to just use storelines or retrlines...
 #	ftp.retrbinary('RETR', creds_file.write)
-	ftp.retrlines'"RETR ' + download, lambda s, w = creds_file.write: w(s + '\n'))
+	ftp.retrlines('RETR ' + download, lambda s, w = creds_file.write: w(s + '\n'))
 	
 	# Parse it mytext reads all lines of the file contents
 	text = creds_file.readlines()
