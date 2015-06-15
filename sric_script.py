@@ -24,6 +24,8 @@ while True:
 	output = subprocess.check_output(['ping', '-w2', ftp_addr])
 	if output == 'tmp string for network down':
 		continue
+        
+    print 'connected!'
 
 	try:
 		ftp = ftplib.FTP(ftp_addr, timeout = 30)
@@ -45,6 +47,7 @@ while True:
 	# Need to do more testing with this line, we might be able to just use storelines or retrlines...
 	ftp.retrlines('RETR ' + download, creds_file.write)
 #	ftp.retrlines('RETR ' + download, lambda s, w = creds_file.write: w(s + '\n'))
+    print 'Got the file!'
 	
 	# Parse it mytext reads all lines of the file contents
 	text = creds_file.readlines()
@@ -53,6 +56,7 @@ while True:
 	ftp.quit()
 	ftp = FTP(ftp_addr, obt_login(text), obt_pass(text), timeout = 30)
 	ftp.storlines('STOR ', upload_name, upload)
+    print 'Gave the file!'
 	
 	# End this script to save resources for other things
 	ftp.quit()
