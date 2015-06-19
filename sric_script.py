@@ -8,8 +8,9 @@ import Modules.file_parse.fileparse as fp
 ftp_addr = '192.168.2.5'
 
 # The names of the files were dealing with
-download = 'cnu.txt'
-upload = open('upload_package.txt', 'w')
+download = 'auth.txt'
+#upload = open('upload_package.txt', 'r')
+filer= open('upload_package.txt', 'rb')
 creds_file = open('credentials.txt', 'wb')
 
 # Where we want to put the file
@@ -59,9 +60,14 @@ while True:
     ftp.quit()
     print fp.obt_login(text)
     print fp.obt_pass(text)
-    ftp = FTP(ftp_addr, fp.obt_login(text), fp.obt_pass(text), timeout = 30)
-    ftp.storlines('STOR', upload_name, upload.write)
-	
+    ftp = ftplib.FTP(ftp_addr, fp.obt_login(text), fp.obt_pass(text), timeout = 30)
+#   ftp.storlines('STOR', upload_name, upload.write)
+#   ftp.storbinary('RETR %s' % 'upload_package.txt', upload.write)
+
+    print 'Login successful!'
+
+    ftp.storlines('STOR ' + 'messager', filer)
+
     # End this script to save resources for other things
     ftp.quit()
     cred_file.close()
