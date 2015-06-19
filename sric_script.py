@@ -5,13 +5,13 @@ import Modules.file_parse.fileparse as fp
 
 
 # The IP of the server we're downloading/uploading things to/from
-ftp_addr = '192.168.2.5'
+ftp_addr = '192.168.2.4'
 
 # The names of the files were dealing with
 download = 'auth.txt'
 #upload = open('upload_package.txt', 'r')
 filer= open('upload_package.txt', 'rb')
-creds_file = open('credentials.txt', 'wb')
+creds_file = open('credentials', 'wb')
 
 # Where we want to put the file
 upload_name = 'CNU-IMPRINT_upload_package.txt'
@@ -23,8 +23,10 @@ while True:
 	# Verify connection before attempting to create FTP instance so we don't have to wait for 30 second timeout
 	
     try:
-        output = subprocess.check_output(['ping', '-w2', ftp_addr])
+        print "submodule"
+        # output = subprocess.check_output(['ping', '-w2', ftp_addr])
     except subprocess.CalledProcessError as e:
+        print "host not found"
         continue
 
 
@@ -51,27 +53,30 @@ while True:
 #	ftp.retrlines('RETR ' + download, lambda s, w = creds_file.write: w(s + '\n'))
     
     creds_file.close()
-    creds_file = open('credentials.txt', 'r+')
+    creds_file = open('credentials', 'rb')
 	
     # Parse it mytext reads all lines of the file contents
     text = creds_file.readlines()
 	
     # Login with the new creds and put the file
     ftp.quit()
-    print fp.obt_login(text)
-    print fp.obt_pass(text)
-    ftp = ftplib.FTP(ftp_addr, fp.obt_login(text), fp.obt_pass(text), timeout = 30)
+
+    uname = '' + str(fp.obt_login(text)).replace('\n', '')
+    pword = '' + str(fp.obt_pass(text)).replace('\n', '')
+
+    ftp2 = ftplib.FTP(ftp_addr, uname, pword)
+    # ftp2 = ftplib.FTP(ftp_addr, fp.obt_login(text), fp.obt_pass(text))
 #   ftp.storlines('STOR', upload_name, upload.write)
 #   ftp.storbinary('RETR %s' % 'upload_package.txt', upload.write)
 
     print 'Login successful!'
 
-    ftp.storlines('STOR ' + 'messager', filer)
+    ftp2.storlines('STOR ' + 'file', filer)
 
     # End this script to save resources for other things
-    ftp.quit()
-    cred_file.close()
-    upload.close()
+    ftp2.quit()
+    creds_file.close()
+    # upload.close()
     break
 	
 # Not currently connected... Time to try again
