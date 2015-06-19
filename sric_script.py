@@ -21,8 +21,9 @@ while True:
 
 	# Verify connection before attempting to create FTP instance so we don't have to wait for 30 second timeout
 	# Does ftplib automatically check connections?  If so we should remove this whole block and set ftplib's timeout to like, 1s
-	output = subprocess.check_output(['ping', '-w2', ftp_addr])
-	if output == 'tmp string for network down':
+	try:
+		output = subprocess.check_output(['ping', '-w2', ftp_addr])
+	except subprocess.CalledProcessError as e:
 		continue
         
     print 'connected!'
