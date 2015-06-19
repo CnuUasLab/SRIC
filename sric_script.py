@@ -26,7 +26,7 @@ while True:
 	except subprocess.CalledProcessError as e:
 		continue
         
-    print 'connected!'
+#    print 'connected!'
 
 	try:
 		ftp = ftplib.FTP(ftp_addr, timeout = 30)
@@ -38,7 +38,7 @@ while True:
 		continue
 	
 	# Connect to the FTP object and Login anonymously
-	ftp = FTP(ftp_addr)
+#	ftp = FTP(ftp_addr)
 	ftp.login()
 	
 	# Change directory if needed
