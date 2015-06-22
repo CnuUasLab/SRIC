@@ -14,72 +14,67 @@ creds_file = open('credentials', 'wb')
 upload_name = 'CNU-IMPRINT_upload_package.jpg'
 #team_dir = 'auvsi/team1/'
 
-# Look for mavproxy packet saying we're at the SRIC, identified via msg command
+def main():
+    # Loop forever!
+    while True:
 
-# Loop forever!
-while True:
+        # Attempt to connect
+        try:
+            ftp = ftplib.FTP(ftp_addr, timeout = 30)
+        except ftplib.all_errors, e:
+            print "FTP ERROR:", e
+            continue
+        
+        # Login anonymously
+        ftp.login()
+        
+        # Change directory if needed
+        if 'team_dir' in locals():
+            ftp.cwd(team_dir)
+        
+        # Download the credentials file
+        ftp.retrbinary('RETR ' + download, creds_file.write)
+        
+        # If read failed, attempt to read again X number of times
 
-    # Attempt to connect
-    try:
-	    ftp = ftplib.FTP(ftp_addr, timeout = 30)
-    except ftplib.all_errors, e:
-	    print "FTP ERROR:", e
-	    continue
-	
-	# Login anonymously
-    ftp.login()
-	
-	# Change directory if needed
-    if 'team_dir' in locals():
-		ftp.cwd(team_dir)
-	
-    # Download the credentials file
-    ftp.retrbinary('RETR ' + download, creds_file.write)
-    
-    # If read failed, attempt to read again X number of times
+        creds_file.close()
+        creds_file = open('credentials', 'rb')
+        
+        # Parse it mytext reads all lines of the file contents
+        text = creds_file.readlines()
+        
+        # Login with the new creds and put the file
+        ftp.quit()
+        
+        break
 
-    creds_file.close()
-    creds_file = open('credentials', 'rb')
-	
-    # Parse it mytext reads all lines of the file contents
-    text = creds_file.readlines()
-	
-    # Login with the new creds and put the file
-    ftp.quit()
-    
-    break
+        uname = '' + str(obt_login(text)).replace('\n', '')
+        pword = '' + str(obt_pass(text)).replace('\n', '')
+        print 'Connecting with %r %r' % (uname, pword)
 
-    uname = '' + str(obt_login(text)).replace('\n', '')
-    pword = '' + str(obt_pass(text)).replace('\n', '')
-    print 'Connecting with %r %r' % (uname, pword)
+    while true:
+        try:
+            ftp2 = ftplib.FTP(ftp_addr, uname, pword)
+       except ftplib.all_errors, e:
+            print "FTP ERROR:", e
+            continue
 
-while true:
-    try:
-        ftp2 = ftplib.FTP(ftp_addr, uname, pword)
-   except ftplib.all_errors, e:
-	    print "FTP ERROR:", e
-	    continue
+        print 'Login successful!'
 
-    print 'Login successful!'
+        ftp2.storlines('STOR ' + upload_name, upload)
+#       ftp.storlines('STOR', upload_name, upload.write)
+#       ftp.storbinary('RETR %s' % 'upload_package', upload.write) 
+#       ftp2.storlines('STOR ' + 'CNU-IMPRINT_upload_package.jpg', upload)
 
-    ftp2.storlines('STOR ' + upload_name, upload)
-#    ftp.storlines('STOR', upload_name, upload.write)
-#    ftp.storbinary('RETR %s' % 'upload_package', upload.write) 
-#    ftp2.storlines('STOR ' + 'CNU-IMPRINT_upload_package.jpg', upload)
+        # If write failed, attempt to write again X number of times
 
-    # If write failed, attempt to write again X number of times
-
-    # Tell mavproxy to finish loiter unlimited
-
-    ftp2.quit()
-    break
-	
+        ftp2.quit()
+        break
+        
 # End this script to save resources for other things
-creds_file.close()
-upload.close()
+    creds_file.close()
+    upload.close()
 
-
-# Define functions...  Should be moved to within the script..
 
 def obt_login(text):
     first_line = text[0]
@@ -95,4 +90,5 @@ def obt_pass(text):
 def obt_message(text):
         return text[1]
 
-
+if __name__ == '__main__':
+    main()
